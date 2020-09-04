@@ -11,5 +11,5 @@ urlpatterns = [
     path('happiness', views.HappinessView.as_view(), name='happinesses'),
     path('sadness', views.SadnessView.as_view(), name='sadnesses'),
     path('surprise', views.SurpriseView.as_view(), name='surprises'),
-    path('search', views.search(), name='searches')
+    path('search', views.search, name='searches')
 ]

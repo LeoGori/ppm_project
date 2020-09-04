@@ -72,7 +72,7 @@
 
           <form action="{% url 'polls:searches'%}" method="post">
             {% csrf_token %}
-            {{ form }}
+            {{ form.as_p() }}
 <!--            <div>-->
 <!--                <select id="emotion" class="browser-default custom-select custom-select-lg mb-3">-->
 <!--                  <option selected>Scegli un'emozione</option>-->
@@ -86,9 +86,9 @@
 <!--                </select>-->
 <!--            </div>-->
             <div class="form-row">
-<!--              <div class="col-12 col-md-9 mb-2 mb-md-0">-->
-<!--                <input type="text" name="text_field" class="form-control form-control-lg" placeholder="Inserisci la porzione di testo da cercare...">-->
-<!--              </div>-->
+              <div class="col-12 col-md-9 mb-2 mb-md-0">
+                <input type="text" name="text_field" class="form-control form-control-lg" placeholder="Inserisci la porzione di testo da cercare...">
+              </div>
               <div class="col-12 col-md-3">
                 <button type="submit" class="btn btn-block btn-lg btn-primary">Cerca</button>
               </div>

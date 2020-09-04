@@ -26,18 +26,24 @@ class TableView(generic.ListView):
         return io.BytesIO(base64.b64decode(string))
 
 
-@csrf_protect
-def search(self, request):
+class SearchView(FormView):
     template_name = 'polls/search.html'
     context_object_name = 'search_text_list'
     model = Table
     form_class = TextForm
-    return Table.objects.filter(speech_text=request.POST.get('text_field', None))
 
-    # context = {
-    #     'queryset': qs
-    # }
-    # return render(request, "search.html", context)
+    @csrf_protect
+    def search(self, request):
+        qs = Table.objects.all()
+        text_field_query = request.GET.get('text_field')
+
+        if text_field_query != "" and text_field_query is not None:
+            qs = qs.filter(speech_text=text_field_query)
+
+        context = {
+            'queryset': qs
+        }
+        return render(request, "search.html", context)
 
 
 class AngerView(generic.ListView):
