@@ -1,4 +1,6 @@
 from django.shortcuts import render
+from django.views.decorators.csrf import csrf_protect
+
 from .models import Table
 
 # Create your views here.
@@ -7,6 +9,12 @@ from django.template import loader
 from django.urls import reverse
 from django.shortcuts import get_object_or_404
 from django.views import generic
+from django.shortcuts import render
+from .models import Table
+import base64
+import io
+from .forms import TextForm
+from django.views.generic.edit import FormView
 
 
 class TableView(generic.ListView):
@@ -14,10 +22,79 @@ class TableView(generic.ListView):
     context_object_name = 'speech_text_list'
     model = Table
 
-    # def get_queryset(self):
-    #     """Return the last five published questions."""
-    #     return Table.objects.order_by('-id')[:5]
+    def getImg(self, string):
+        return io.BytesIO(base64.b64decode(string))
 
+
+@csrf_protect
+def search(self, request):
+    template_name = 'polls/search.html'
+    context_object_name = 'search_text_list'
+    model = Table
+    form_class = TextForm
+    return Table.objects.filter(speech_text=request.POST.get('text_field', None))
+
+    # context = {
+    #     'queryset': qs
+    # }
+    # return render(request, "search.html", context)
+
+
+class AngerView(generic.ListView):
+    template_name = 'polls/anger.html'
+    context_object_name = 'anger_emotion_list'
+    model = Table
+
+    def get_queryset(self):
+        """Return the last five published questions."""
+        return Table.objects.filter(emotion="Arrabbiato")
+
+
+class DisgustView(generic.ListView):
+    template_name = 'polls/disgust.html'
+    context_object_name = 'disgust_emotion_list'
+    model = Table
+
+    def get_queryset(self):
+        return Table.objects.filter(emotion="Disgustato")
+
+
+class FearView(generic.ListView):
+    template_name = 'polls/fear.html'
+    context_object_name = 'fear_emotion_list'
+    model = Table
+
+    def get_queryset(self):
+        return Table.objects.filter(emotion="Spaventato")
+
+
+class HappinessView(generic.ListView):
+    template_name = 'polls/happiness.html'
+    context_object_name = 'happiness_emotion_list'
+    model = Table
+
+    def get_queryset(self):
+        """Return the last five published questions."""
+        return Table.objects.filter(emotion="Felice")
+
+
+class SadnessView(generic.ListView):
+    template_name = 'polls/sadness.html'
+    context_object_name = 'sadness_emotion_list'
+    model = Table
+
+    def get_queryset(self):
+        """Return the last five published questions."""
+        return Table.objects.filter(emotion="Triste")
+
+
+class SurpriseView(generic.ListView):
+    template_name = 'polls/surprise.html'
+    context_object_name = 'surprise_emotion_list'
+    model = Table
+
+    def get_queryset(self):
+        return Table.objects.filter(emotion="Sorpreso")
 
 # class IndexView(generic.ListView):
 #     template_name = 'polls/index.html'

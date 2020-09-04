@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+
+{% load static %}
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <link rel="stylesheet" href="{% static 'polls/style.css' %}">
+</head>
+<body>
+
+{% if anger_emotion_list %}
+    <table>
+        <thead>
+        <tr><th>id</th><th>testo riconosciuto</th><th>emozione riconosciuta</th><th>immagine</th></tr>
+        </thead>
+        <tbody>
+            {% for anger in anger_emotion_list %}
+            <tr><td>{{ anger.id}}</td>
+                <td>{{ anger.speech_text}}</td>
+                <td>{{ anger.emotion}}</td>
+                <td><img src="data:image/png;base64,{{anger.image}}"></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% else %}
+    <p>No polls are available.</p>
+{% endif %}
+</body>
+</html>

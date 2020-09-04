@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+ciao sto cercando
+{% if search_text_list %}
+    <table>
+        <thead>
+        <tr><th>id</th><th>testo riconosciuto</th><th>emozione riconosciuta</th><th>immagine</th></tr>
+        </thead>
+        <tbody>
+            {% for search in search_text_list %}
+            <tr><td>{{ search.id}}</td>
+                <td>{{ search.speech_text}}</td>
+                <td>{{ search.emotion}}</td>
+                <td><img src="data:image/png;base64,{{search.image}}"></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% else %}
+    <p>No polls are available.</p>
+{% endif %}
+</body>
+</html>

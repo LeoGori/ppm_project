@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="{% static 'polls/style.css' %}">
+</head>
+<body>
+{% if fear_emotion_list %}
+    <table>
+        <thead>
+        <tr><th>id</th><th>testo riconosciuto</th><th>emozione riconosciuta</th><th>immagine</th></tr>
+        </thead>
+        <tbody>
+            {% for fear in fear_emotion_list %}
+            <tr><td>{{ fear.id}}</td>
+                <td>{{ fear.speech_text}}</td>
+                <td>{{ fear.emotion}}</td>
+                <td><img src="data:image/png;base64,{{fear.image}}"></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% else %}
+    <p>No polls are available.</p>
+{% endif %}
+</body>
+</html>

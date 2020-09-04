@@ -6,6 +6,10 @@ from django.db import models
 class Table(models.Model):
     speech_text = models.CharField(max_length=200)
     emotion = models.CharField(max_length=20)
+    image = models.TextField()
+
+    def processImage(self):
+        print('ciao')
 
     def __str__(self):
         return self.speech_text

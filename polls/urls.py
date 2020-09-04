@@ -4,10 +4,12 @@ from . import views
 
 app_name = 'polls'
 urlpatterns = [
-    #metodo 2
-    # path('', views.IndexView.as_view(), name='index'),
-    # path('<int:pk>/', views.DetailView.as_view(), name='detail'),
-    # path('<int:pk>/results/', views.ResultsView.as_view(), name='results'),
-    # path('<int:question_id>/vote/', views.vote, name='vote'),
     path('', views.TableView.as_view(), name='tables'),
+    path('anger', views.AngerView.as_view(), name='angers'),
+    path('disgust', views.DisgustView.as_view(), name='disgusts'),
+    path('fear', views.FearView.as_view(), name='fears'),
+    path('happiness', views.HappinessView.as_view(), name='happinesses'),
+    path('sadness', views.SadnessView.as_view(), name='sadnesses'),
+    path('surprise', views.SurpriseView.as_view(), name='surprises'),
+    path('search', views.search(), name='searches')
 ]
