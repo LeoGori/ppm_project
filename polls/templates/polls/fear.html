@@ -5,13 +5,14 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <link rel="stylesheet" href="{% static 'polls/style.css' %}">
+    <link rel="stylesheet" href="{% static 'MDB-Free_4.19.1/css/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'MDB-Free_4.19.1/css/style.css' %}">
 </head>
 <body>
 {% if fear_emotion_list %}
-    <table>
-        <thead>
-        <tr><th>id</th><th>testo riconosciuto</th><th>emozione riconosciuta</th><th>immagine</th></tr>
+    <table class="table">
+        <thead class="grey lighten-2">
+        <tr><th scope="col">id</th><th scope="col">testo riconosciuto</th><th scope="col">emozione riconosciuta</th><th scope="col">immagine</th></tr>
         </thead>
         <tbody>
             {% for fear in fear_emotion_list %}

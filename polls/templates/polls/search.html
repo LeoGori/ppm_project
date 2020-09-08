@@ -1,19 +1,28 @@
 <!DOCTYPE html>
+
+{% load static %}
+{% load bootstrap4 %}
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+
+    <link rel="stylesheet" href="{% static 'MDB-Free_4.19.1/css/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'MDB-Free_4.19.1/css/style.css' %}">
+<!--    <link rel="stylesheet" href="{% static 'bootrstrap-italia/css/bootrstrap-italia.min.css' %}">-->
+
 </head>
 <body>
-ciao sto cercando
-{% if search_text_list %}
-    <table>
-        <thead>
-        <tr><th>id</th><th>testo riconosciuto</th><th>emozione riconosciuta</th><th>immagine</th></tr>
+
+{% if tables %}
+    <table class="table">
+        <thead class="grey lighten-2">
+        <tr><th scope="col">#</th><th scope="col">testo riconosciuto</th><th scope="col">emozione riconosciuta</th ><th scope="col">immagine</th></tr>
         </thead>
         <tbody>
-            {% for search in search_text_list %}
-            <tr><td>{{ search.id}}</td>
+            {% for search in tables%}
+            <tr scope="row"><td >{{ search.id}}</td>
                 <td>{{ search.speech_text}}</td>
                 <td>{{ search.emotion}}</td>
                 <td><img src="data:image/png;base64,{{search.image}}"></td>

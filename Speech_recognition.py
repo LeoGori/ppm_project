@@ -5,11 +5,11 @@ from django.conf import settings
 import ppm_project.settings as app_settings
 from PIL import Image
 import base64
-import io
 
 settings.configure(INSTALLED_APPS=app_settings.INSTALLED_APPS, DATABASES=app_settings.DATABASES)
 
 django.setup()
+
 from polls.models import Table
 
 
@@ -20,14 +20,6 @@ class SpeechRecognition(Thread):
 
     def run(self):
         # obtain audio from the microphone
-        with open("prova.png", "rb") as file:
-            img = base64.b64encode(file.read())
-
-        str_img = str(img)
-        str_img = str_img[2:len(str_img) - 1]
-        for i in range(20):
-            t = Table(speech_text=str(i), emotion="Disgustato", image=str_img)
-            t.save()
 
         while True:
             r = sr.Recognizer()
@@ -46,11 +38,11 @@ class SpeechRecognition(Thread):
                 img.save('prova.png')
                 with open("prova.png", "rb") as file:
                     img = base64.b64encode(file.read())
-                #img = Image.open(io.BytesIO(base64.b64decode(img)))
+                # img = Image.open(io.BytesIO(base64.b64decode(img)))
                 print("Google Speech Recognition thinks you said: " + text
                       + " while your mood was " + self.emotion.getEmotion())
                 str_img = str(img)
-                str_img = str_img[2:len(str_img)-1]
+                str_img = str_img[2:len(str_img) - 1]
                 print(str_img)
                 t = Table(speech_text=text, emotion=self.emotion.getEmotion(), image=str_img)
                 print(str_img)

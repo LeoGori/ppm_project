@@ -16,6 +16,11 @@ import io
 from .forms import TextForm
 from django.views.generic.edit import FormView
 
+def search(request):
+    qur = request.GET.get("text_field")
+    tables = Table.objects.filter(speech_text__contains=qur)
+    return render(request, 'polls/search.html', {'tables': tables})
+
 
 class TableView(generic.ListView):
     template_name = 'polls/table.html'
@@ -71,7 +76,7 @@ class FearView(generic.ListView):
     model = Table
 
     def get_queryset(self):
-        return Table.objects.filter(emotion="Spaventato")
+        return Table.objects.filter(emotion="Impaurito")
 
 
 class HappinessView(generic.ListView):
