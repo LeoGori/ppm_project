@@ -20,6 +20,8 @@
 <!--    <link rel="stylesheet" href="{% static 'polls/ciao.css' %}">-->
     <link href="{% static 'startbootstrap/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
     <link href="{% static 'MDB-Free_4.19.1/css/addons/datatables.min.css' %}" rel="stylesheet">
+    <link href="{% static 'bootstrap-italia/css/bootstrap-italia.min.css' %}" rel="stylesheet">
+
 
     <!-- Custom fonts for this template -->
     <link href="{% static 'startbootstrap/vendor/fontawesome-free/css/all.min.css" rel="stylesheet' %}">
@@ -43,11 +45,14 @@
         <div class="col-md-10 col-lg-8 col-xl-7 mx-auto">
           {% block content %}
           <form method="get" action="{% url 'polls:search' %}">
-            <div class="form-row">
-              <div class="col-12 col-md-9 mb-2 mb-md-0">
+            <div style="text-align: center;">
+              <div class="col-12 col-md-9 mb-2 mb-md-0" style="padding: 10px; margin: auto;">
+                <input type="date" name="date_field" class="form-control form-control-lg">
+              </div>
+              <div class="col-12 col-md-9 mb-2 mb-md-0" style="padding: 10px; margin: auto;">
                 <input type="text" name="text_field" class="form-control form-control-lg" placeholder="Insert text to search...">
               </div>
-              <div class="col-12 col-md-3">
+              <div class="col-12 col-md-3" style="margin: auto">
                 <button type="submit" class="btn btn-block btn-lg btn-primary">Search</button>
               </div>
             </div>
@@ -108,14 +113,13 @@
           </a>
         </div>
       </div>
-
     </div>
   </section>
 
   <!-- Testimonials -->
   <section class="testimonials text-center bg-light">
     <div class="container">
-      <h2 class="mb-5">What people are saying...</h2>
+      <h2 class="mb-5">Florence University</h2>
       <div class="row">
         <div class="col-lg-6">
           <div class="testimonial-item mx-auto mb-5 mb-lg-0">

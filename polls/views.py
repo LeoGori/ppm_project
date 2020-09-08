@@ -16,9 +16,15 @@ import io
 from .forms import TextForm
 from django.views.generic.edit import FormView
 
+
 def search(request):
     qur = request.GET.get("text_field")
-    tables = Table.objects.filter(speech_text__contains=qur)
+    qur2 = request.GET.get("date_field")
+    tables = Table.objects.all()
+    if qur != "" and qur is not None:
+        tables = tables.filter(speech_text__contains=qur)
+    if qur2 != "" and qur2 is not None:
+        tables = tables.filter(date=qur2)
     return render(request, 'polls/search.html', {'tables': tables})
 
 

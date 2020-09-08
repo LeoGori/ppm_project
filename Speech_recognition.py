@@ -11,6 +11,7 @@ settings.configure(INSTALLED_APPS=app_settings.INSTALLED_APPS, DATABASES=app_set
 django.setup()
 
 from polls.models import Table
+from datetime import date
 
 
 class SpeechRecognition(Thread):
@@ -44,7 +45,9 @@ class SpeechRecognition(Thread):
                 str_img = str(img)
                 str_img = str_img[2:len(str_img) - 1]
                 print(str_img)
-                t = Table(speech_text=text, emotion=self.emotion.getEmotion(), image=str_img)
+                today = date.today()
+                my_date = today.strftime("%Y-%m-%d")
+                t = Table(date=my_date, speech_text=text, emotion=self.emotion.getEmotion(), image=str_img)
                 print(str_img)
                 t.save()
 

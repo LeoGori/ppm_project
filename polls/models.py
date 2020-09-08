@@ -4,6 +4,7 @@ from django.db import models
 # Create your models here.
 
 class Table(models.Model):
+    date = models.DateField()
     speech_text = models.CharField(max_length=200)
     emotion = models.CharField(max_length=20)
     image = models.TextField()
