@@ -43,7 +43,6 @@
           <h1 class="mb-5">Insert keywords to browse into our database!</h1>
         </div>
         <div class="col-md-10 col-lg-8 col-xl-7 mx-auto">
-          {% block content %}
           <form method="get" action="{% url 'polls:search' %}">
             <div style="text-align: center;">
               <div class="col-12 col-md-9 mb-2 mb-md-0" style="padding: 10px; margin: auto;">
@@ -57,12 +56,6 @@
               </div>
             </div>
           </form>
-          <ul>
-          {% for user in filter.qs %}
-            <li>{{ user.speech_text }} - {{ user.emotion }}</li>
-          {% endfor %}
-          </ul>
-          {% endblock %}
         </div>
       </div>
     </div>

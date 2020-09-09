@@ -33,8 +33,11 @@ class TableView(generic.ListView):
     context_object_name = 'speech_text_list'
     model = Table
 
-    def getImg(self, string):
-        return io.BytesIO(base64.b64decode(string))
+
+class IndexView(generic.ListView):
+    template_name = 'polls/index.html'
+    context_object_name = 'speech_text_list'
+    model = Table
 
 
 class SearchView(FormView):
@@ -42,19 +45,6 @@ class SearchView(FormView):
     context_object_name = 'search_text_list'
     model = Table
     form_class = TextForm
-
-    @csrf_protect
-    def search(self, request):
-        qs = Table.objects.all()
-        text_field_query = request.GET.get('text_field')
-
-        if text_field_query != "" and text_field_query is not None:
-            qs = qs.filter(speech_text=text_field_query)
-
-        context = {
-            'queryset': qs
-        }
-        return render(request, "search.html", context)
 
 
 class AngerView(generic.ListView):
