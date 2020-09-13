@@ -14,6 +14,7 @@ class Emotions(Thread):
 
     def __init__(self):
         super().__init__()
+        # vettore che raccoglie le emozioni riconoscibili
         self.vectEmotion = []
         os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
 
@@ -43,13 +44,13 @@ class Emotions(Thread):
         # prevents openCL usage and unnecessary logging messages
         cv2.ocl.setUseOpenCL(False)
         # dictionary which assigns each label an emotion (alphabetical order)
-        self.emotion_dict = {0: "Arrabbiato", 1: "Disgustato", 2: "Impaurito", 3: "Felice", 4: "Neutrale", 5: "Triste",
-                             6: "Sorpreso"}
+        self.emotion_dict = {0: "Arrabbiato", 1: "Disgustato", 2: "Impaurito", 3: "Felice", 4: "Neutrale", 5: "Triste", 6: "Sorpreso"}
 
         # start the webcam feed
         self.cap = cv2.VideoCapture(0)
 
     def run(self):
+
         while True:
 
             # Find haar cascade to draw bounding box around face
@@ -58,12 +59,15 @@ class Emotions(Thread):
                 break
             facecasc = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
             gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+            color = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
             faces = facecasc.detectMultiScale(gray, scaleFactor=1.3, minNeighbors=5)
 
             for (x, y, w, h) in faces:
                 cv2.rectangle(frame, (x, y - 50), (x + w, y + h + 10), (255, 0, 0), 2)
                 roi_gray = gray[y:y + h, x:x + w]
+                roi_color = color[y:y + h, x:x + w]
                 self.cropped_img = np.expand_dims(np.expand_dims(cv2.resize(roi_gray, (48, 48)), -1), 0)
+                self.image = np.expand_dims(np.expand_dims(cv2.resize(roi_color, (305, 305)), -1), 0)
                 prediction = self.model.predict(self.cropped_img)
                 maxindex = int(np.argmax(prediction))
                 self.vectEmotion.append(maxindex)
@@ -82,7 +86,7 @@ class Emotions(Thread):
         return self.emotion_dict[self.most_common(self.vectEmotion)]
 
     def getCropeImage(self):
-        return self.cropped_img
+        return self.image
 
     def setReady(self):
         self.vectEmotion.clear()

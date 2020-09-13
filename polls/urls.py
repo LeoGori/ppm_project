@@ -13,4 +13,5 @@ urlpatterns = [
     path('sadness', views.SadnessView.as_view(), name='sadnesses'),
     path('surprise', views.SurpriseView.as_view(), name='surprises'),
     path('search', views.search, name='search'),
+    path('emotions', views.EmotionsView.as_view(), name='emotions'),
 ]

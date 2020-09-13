@@ -14,25 +14,54 @@
 
 </head>
 <body>
+    <div id="demo-div" style="position:fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); display : none; pointer-events: auto">
+        <span id='close' style="float:right;display:inline-block;padding:2px 5px;background:#ccc; float: right; z-index: 1" onclick='closeFunction()'>
+            x
+        </span>
+        <div id="demo">
+        </div>
 
-{% if tables %}
-    <table class="table">
-        <thead class="grey lighten-2">
-        <tr><th scope="col">#</th><th scope="col">testo riconosciuto</th><th scope="col">emozione riconosciuta</th ><th scope="col">data</th><th scope="col">immagine</th></tr>
-        </thead>
-        <tbody>
-            {% for search in tables%}
-            <tr scope="row"><td >{{ search.id}}</td>
-                <td>{{ search.speech_text}}</td>
-                <td>{{ search.emotion}}</td>
-                <td>{{ search.date}}</td>
-                <td><img src="data:image/png;base64,{{search.image}}"></td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
-{% else %}
-    <p>Database is empty</p>
-{% endif %}
+    </div>
+
+    {% block content %}
+
+    {% if tables %}
+        <table class="table">
+            <thead class="grey lighten-2">
+            <tr><th scope="col">#</th><th scope="col">Recognized Text</th><th scope="col">Detected Emotion</th><th scope="col">Date</th><th scope="col">Image</th></tr>
+            </thead>
+            <tbody>
+                {% for search in tables%}
+                <tr scope="row" ><td >{{ search.id}}</td>
+                    <td>{{ search.speech_text }}</td>
+                    <td>{{ search.emotion }}</td>
+                    <td>{{ search.date }}</td>
+                    <td style="height: 100px;">
+                        <img src="data:image/png;base64,{{search.image}}" onclick="myFunction('{{search.image}}')" style="max-height: 100%;">
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>Database is empty</p>
+    {% endif %}
+
+    {% endblock %}
+
+    <script>
+        function myFunction(string) {
+          document.getElementById("demo-div").style.display = 'block'
+          document.getElementById("demo").innerHTML = '<img src="data:image/png;base64, ' + string + '">'
+        }
+
+        function closeFunction() {
+          document.getElementById("demo-div").style.display = 'none'
+          document.getElementById("demo").innerHTML = ''
+        }
+    </script>
+    <script>
+
+    </script>
 </body>
 </html>

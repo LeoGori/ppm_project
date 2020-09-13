@@ -34,7 +34,7 @@ class SpeechRecognition(Thread):
                 # to use another API key, use `r.recognize_google(audio, key="GOOGLE_SPEECH_RECOGNITION_API_KEY")`
                 # instead of `r.recognize_google(audio)`
                 text = r.recognize_google(audio, language="it-IT")
-                IMIR = self.emotion.getCropeImage().reshape(48, 48)
+                IMIR = self.emotion.getCropeImage().reshape(305, 305, 3)
                 img = Image.fromarray(IMIR)
                 img.save('prova.png')
                 with open("prova.png", "rb") as file:
@@ -44,11 +44,9 @@ class SpeechRecognition(Thread):
                       + " while your mood was " + self.emotion.getEmotion())
                 str_img = str(img)
                 str_img = str_img[2:len(str_img) - 1]
-                print(str_img)
                 today = date.today()
                 my_date = today.strftime("%Y-%m-%d")
                 t = Table(date=my_date, speech_text=text, emotion=self.emotion.getEmotion(), image=str_img)
-                print(str_img)
                 t.save()
 
             except sr.UnknownValueError:

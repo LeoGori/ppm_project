@@ -1,36 +1,37 @@
 <!DOCTYPE html>
-
-{% load static %}
-
-<!--<!DOCTYPE html>-->
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-
-    <link rel="stylesheet" href="{% static 'MDB-Free_4.19.1/css/bootstrap.css' %}">
-    <link rel="stylesheet" href="{% static 'MDB-Free_4.19.1/css/style.css' %}">
 </head>
 <body>
 
-{% if disgust_emotion_list %}
-    <table class="table">
-        <thead class="grey lighten-2">
-        <tr><th scope="col">id</th><th scope="col">testo riconosciuto</th><th scope="col">emozione riconosciuta</th><th scope="col">immagine</th></tr>
-        </thead>
-        <tbody>
-            {% for disgust in disgust_emotion_list %}
-            <tr><td>{{ disgust.id}}</td>
-                <td>{{ disgust.speech_text}}</td>
-                <td>{{ disgust.emotion}}</td>
-                <td>{{ disgust.date}}</td>
-                <td><img src="data:image/png;base64,{{disgust.image}}"></td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
-{% else %}
-    <p>No polls are available.</p>
-{% endif %}
+{% extends "polls/search.html" %}
+
+{% block content %}
+    {% if disgust_emotion_list %}
+        <table class="table">
+            <thead class="grey lighten-2">
+            <tr><th scope="col">#</th><th scope="col">Recognized Text</th><th scope="col">Detected Emotion</th><th scope="col">Date</th><th scope="col">Image</th></tr>
+            </thead>
+            <tbody>
+                {% for disgust in disgust_emotion_list%}
+                <tr scope="row" >
+                    <td >{{ disgust.id}}</td>
+                    <td>{{ disgust.speech_text }}</td>
+                    <td>{{ disgust.emotion }}</td>
+                    <td>{{ disgust.date }}</td>
+                    <td style="height: 100px;">
+                        <img src="data:image/png;base64,{{disgust.image}}" onclick="myFunction('{{disgust.image}}')" style="max-height: 100%;">
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>Database is empty</p>
+    {% endif %}
+{% endblock %}
+
 </body>
 </html>

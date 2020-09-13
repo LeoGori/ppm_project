@@ -1,5 +1,4 @@
 <!doctype html>
-
 {% load static %}
 <html lang="en">
   <head>
@@ -29,7 +28,7 @@
           <div class="row">
             <div class="col-sm-8 col-md-7 py-4">
               <h4 class="text-white">About</h4>
-              <p class="text-muted">Add some information about the album below, the author, or any other background context. Make it a few sentences long so folks can pick up some informative tidbits. Then, link them off to some social networking sites or contact information.</p>
+              <p class="text-muted">Facial Expression Recognition is an Image Classification problem located within the wider field of Computer Vision. Image Classification problems are ones in which images must be algorithmically assigned a label from a discrete set of categories.</p>
             </div>
             <div class="col-sm-4 offset-md-1 py-4">
               <h4 class="text-white">Contact</h4>
@@ -43,10 +42,11 @@
         </div>
       </div>
       <div class="navbar navbar-dark bg-dark box-shadow">
-        <div class="container d-flex justify-content-between">
-          <a href="#" class="navbar-brand d-flex align-items-center">
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-2"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path><circle cx="12" cy="13" r="4"></circle></svg>
-            <strong>Album</strong>
+        <div class="container d-flex justify-content-between" style="max-width: 95%">
+          <a href="{% url 'polls:emotions' %}" class="navbar-brand d-flex align-items-center">
+<!--            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-2"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path><circle cx="12" cy="13" r="4"></circle></svg>-->
+            <img class="card-img-top" src="{% static 'images/database-16.png' %}" alt="Fear image cap" >
+            <strong style="margin-left: 5px;">Database</strong>
           </a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -55,16 +55,22 @@
       </div>
     </header>
 
+
+
+<!--These emotion classifications are illustrated in the image below-->
+
     <main role="main">
 
       <section class="jumbotron text-center">
         <div class="container">
-          <h1 class="jumbotron-heading">Album example</h1>
-          <p class="lead text-muted">Something short and leading about the collection below—its contents, the creator, etc. Make it short and sweet, but not too short so folks don't simply skip over it entirely.</p>
+          <h1 class="jumbotron-heading">Datasets and target emotions</h1>
+          <p class="lead text-muted">When computers look at an image, what they ‘see’ is
+                                    simply a matrix of pixel values. In order to classify an image,
+                                    the computer has to discover and classify numerical patterns within the image matrix.</p>
           <p>
             <form method="get" action="{% url 'polls:search' %}" class="needs-validation" novalidate>
                 <div class="col-md-6 mb-3" style="display: inline;">
-                    <input type="text" class="form-control" id="text_field" name="text_field" placeholder="Insert Text to search..." value="" required>
+                    <input type="text" class="form-control" id="text_field" name="text_field" placeholder="Insert text to search..." value="" required>
                     <div class="invalid-feedback">
                       Valid text is required.
                     </div>
@@ -83,14 +89,13 @@
       </section>
 
       <div class="album py-5 bg-light">
-        <div class="container">
-
+        <div class="container" style="max-width: 95%">
           <div class="row">
             <div class="col-md-4">
               <div class="card mb-4 box-shadow">
-                <img class="card-img-top" src="{% static 'images/anger.png' %}" alt="Card image cap">
+                <img class="card-img-top" src="{% static 'images/anger.png' %}" alt="Anger image cap">
                 <div class="card-body">
-                  <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                  <p class="card-text">How much more grievous are the consequences of anger than the causes of it</p>
                   <div class="d-flex justify-content-between align-items-center">
                     <div class="btn-group">
                       <form action="{% url 'polls:angers' %}" class="needs-validation" novalidate>
@@ -104,9 +109,9 @@
             </div>
             <div class="col-md-4">
               <div class="card mb-4 box-shadow">
-                <img class="card-img-top" src="{% static 'images/disgust.png' %}" alt="Card image cap">
+                <img class="card-img-top" src="{% static 'images/disgust.png' %}" alt="Disgust image cap">
                 <div class="card-body">
-                  <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                  <p class="card-text">That moment of pure disgust when you stick yourn hand under your desk and you touch someone else's old gum</p>
                   <div class="d-flex justify-content-between align-items-center">
                     <div class="btn-group">
                       <form action="{% url 'polls:disgusts' %}" class="needs-validation" novalidate>
@@ -120,9 +125,9 @@
             </div>
             <div class="col-md-4">
               <div class="card mb-4 box-shadow">
-                <img class="card-img-top" src="{% static 'images/fear.png' %}" alt="Card image cap">
+                <img class="card-img-top" src="{% static 'images/fear.png' %}" alt="Fear image cap" style="size: ">
                 <div class="card-body">
-                  <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                  <p class="card-text">F.E.A.R: False Evidence Appearing Real</p>
                   <div class="d-flex justify-content-between align-items-center">
                     <div class="btn-group">
                       <form action="{% url 'polls:fears' %}" class="needs-validation" novalidate>
@@ -137,9 +142,9 @@
 
             <div class="col-md-4">
               <div class="card mb-4 box-shadow">
-                <img class="card-img-top" src="{% static 'images/happiness.png' %}" alt="Card image cap">
+                <img class="card-img-top" src="{% static 'images/happiness.png' %}" alt="Happiness image cap">
                 <div class="card-body">
-                  <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                  <p class="card-text">No medicine cures what happiness cannot</p>
                   <div class="d-flex justify-content-between align-items-center">
                     <div class="btn-group">
                       <form action="{% url 'polls:happinesses' %}" class="needs-validation" novalidate>
@@ -153,9 +158,9 @@
             </div>
             <div class="col-md-4">
               <div class="card mb-4 box-shadow">
-                <img class="card-img-top" src="{% static 'images/sadness.png' %}" alt="Card image cap">
+                <img class="card-img-top" src="{% static 'images/sadness.png' %}" alt="Sadness image cap">
                 <div class="card-body">
-                  <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                  <p class="card-text">Tears coem from the heart and not from the brain</p>
                   <div class="d-flex justify-content-between align-items-center">
                     <div class="btn-group">
                       <form action="{% url 'polls:sadnesses' %}" class="needs-validation" novalidate>
@@ -169,9 +174,9 @@
             </div>
             <div class="col-md-4">
               <div class="card mb-4 box-shadow">
-                <img class="card-img-top" src="{% static 'images/surprise.png' %}" alt="Card image cap">
+                <img class="card-img-top" src="{% static 'images/surprise.png' %}" alt="Surprise image cap">
                 <div class="card-body">
-                  <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                  <p class="card-text">The unexpected moment is always sweeter</p>
                   <div class="d-flex justify-content-between align-items-center">
                     <div class="btn-group">
                       <form action="{% url 'polls:surprises' %}" class="needs-validation" novalidate>
@@ -192,19 +197,22 @@
 
     <footer class="text-muted">
       <div class="container">
-        <p class="float-right">
-          <a href="#">Back to top</a>
+        <p style="text-align: center">Machine learning systems can be trained to recognize emotional expressions from images of human faces, with a high degree of accuracy in many cases
+            A standard set of seven emotion classifications are often used:</p>
+        <p style="text-align: center">
+          Anger, Disgust, Fear, Happiness, Sadness, Surprise, Neutral
         </p>
-        <p>Album example is &copy; Bootstrap, but please download and customize it for yourself!</p>
-        <p>New to Bootstrap? <a href="../../">Visit the homepage</a> or read our <a href="../../getting-started/">getting started guide</a>.</p>
+        <center>
+          <p>
+            <a href="#">Back to top</a>
+          </p>
+        </center>
       </div>
     </footer>
 
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <link href="{% static 'bootstrap-4.0.0/favicon.ico' %}" rel="icon">
-    <img class="card-img-top" src="{% static 'images/anger.png' %}" alt="Card image cap">
 
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script>window.jQuery || document.write('<script src="{% static 'bootstrap-4.0.0/assets/js/vendor/jquery-slim.min.js' %}"><\/script>')</script>

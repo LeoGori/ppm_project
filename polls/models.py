@@ -9,9 +9,6 @@ class Table(models.Model):
     emotion = models.CharField(max_length=20)
     image = models.TextField()
 
-    def processImage(self):
-        print('ciao')
-
     def __str__(self):
         return self.speech_text
 

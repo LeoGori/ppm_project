@@ -9,19 +9,19 @@
 {% extends "polls/search.html" %}
 
 {% block content %}
-    {% if sadness_emotion_list %}
+    {% if emotion_list %}
         <table class="table">
             <thead class="grey lighten-2">
             <tr><th scope="col">#</th><th scope="col">Recognized Text</th><th scope="col">Detected Emotion</th><th scope="col">Date</th><th scope="col">Image</th></tr>
             </thead>
             <tbody>
-                {% for sadness in sadness_emotion_list%}
-                <tr scope="row" ><td >{{ search.id}}</td>
-                    <td>{{ sadness.speech_text }}</td>
-                    <td>{{ sadness.emotion }}</td>
-                    <td>{{ sadness.date }}</td>
+                {% for emotion in emotion_list%}
+                <tr scope="row" ><td >{{ emotion.id}}</td>
+                    <td>{{ emotion.speech_text }}</td>
+                    <td>{{ emotion.emotion }}</td>
+                    <td>{{ emotion.date }}</td>
                     <td style="height: 100px;">
-                        <img src="data:image/png;base64,{{sadness.image}}" onclick="myFunction('{{sadness.image}}')" style="max-height: 100%;">
+                        <img src="data:image/png;base64,{{emotion.image}}" onclick="myFunction('{{emotion.image}}')" style="max-height: 100%;">
                     </td>
                 </tr>
                 {% endfor %}

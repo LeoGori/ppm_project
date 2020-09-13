@@ -40,11 +40,14 @@ class IndexView(generic.ListView):
     model = Table
 
 
-class SearchView(FormView):
-    template_name = 'polls/search.html'
-    context_object_name = 'search_text_list'
+class EmotionsView(generic.ListView):
+    template_name = 'polls/emotions.html'
+    context_object_name = 'emotion_list'
     model = Table
-    form_class = TextForm
+
+    def get_queryset(self):
+        """Return the last five published questions."""
+        return Table.objects.all()
 
 
 class AngerView(generic.ListView):
